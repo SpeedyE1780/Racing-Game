@@ -522,6 +522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6fa09f4144e6f4fafffb2e23d0bde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1335254261}
+  speed: 450
+  steerAngle: 30
+  brakeTorque: 1000
   checkPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -639,30 +643,26 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 450
-  targetSpeed: 50
-  steerAngle: 30
-  brakeTorque: 1000
   target: {fileID: 0}
+  targetSpeed: 50
+  targetDistanceThreshold: 10
+  checkpointDistanceThreshold: 1
+  timeBetweenCheckpoints: 15
   frontWheels:
   - {fileID: 1776285316}
   - {fileID: 341027290}
   backWheels:
   - {fileID: 632661694}
   - {fileID: 705920051}
-  frontWheelsMesh:
+  frontWheelsTransform:
   - {fileID: 6928695954716609614}
   - {fileID: 1346388386154919605}
-  backWheelsMesh:
+  backWheelsTransform:
   - {fileID: 256598779819115065}
   - {fileID: 3685139525201348387}
-  timeBetweenCheckpoints: 15
-  brakeFactor: 0
-  rb: {fileID: 1335254261}
   tailLights: {fileID: 7068754805067971382}
   color: {r: 1, g: 0, b: 0, a: 1}
   intensity: 10
-  magnitude: 0
 --- !u!4 &5552837448476519123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df1de23df8483fe4eb9ef95d0055e450, type: 3}
