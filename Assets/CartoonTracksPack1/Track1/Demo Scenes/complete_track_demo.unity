@@ -366,14 +366,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 634862053, guid: a7911e57db8c9cf4684876fa1a77d416, type: 3}
-      propertyPath: wheelSpeed
-      value: 450
-      objectReference: {fileID: 0}
-    - target: {fileID: 634862053, guid: a7911e57db8c9cf4684876fa1a77d416, type: 3}
-      propertyPath: brakingForce
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 307111648602385986, guid: a7911e57db8c9cf4684876fa1a77d416, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -6683,10 +6675,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1480141050}
-    - target: {fileID: 1335254262, guid: 5e5d454ce40abc640984ee335959c9f0, type: 3}
-      propertyPath: checkPoints.Array.size
-      value: 116
-      objectReference: {fileID: 0}
     - target: {fileID: 1335254262, guid: 5e5d454ce40abc640984ee335959c9f0, type: 3}
       propertyPath: checkPoints.Array.data[0]
       value: 

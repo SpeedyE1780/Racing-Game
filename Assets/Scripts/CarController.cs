@@ -1,71 +1,109 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public WheelCollider frontLeft;
-    public WheelCollider frontRight;
-    public WheelCollider backLeft;
-    public WheelCollider backRight;
+    [Header("Wheel Colliders")]
+    [SerializeField]
+    private WheelCollider frontLeft;
+    [SerializeField]
+    private WheelCollider frontRight;
+    [SerializeField]
+    private WheelCollider backLeft;
+    [SerializeField]
+    private WheelCollider backRight;
 
-    public Transform frontLeftTransform;
-    public Transform frontRightTransform;
-    public Transform backLeftTransform;
-    public Transform backRightTransform;
+    [Header("Wheel Transforms")]
+    [SerializeField]
+    private Transform frontLeftTransform;
+    [SerializeField]
+    private Transform frontRightTransform;
+    [SerializeField]
+    private Transform backLeftTransform;
+    [SerializeField]
+    private Transform backRightTransform;
 
-    public float wheelSpeed;
-    public float brakingForce;
-    public float steerAngle;
+    [Header("Car Configuration")]
+    [SerializeField]
+    private Rigidbody rb;
+    [SerializeField]
+    private float wheelSpeed;
+    [SerializeField]
+    private float brakingForce;
+    [SerializeField]
+    private float steerAngle;
 
-    void Update()
+    [Header("Tail Lights Configuration")]
+    [SerializeField]
+    private MeshRenderer tailLights;
+    [SerializeField]
+    private Color tailLightsColor;
+    [SerializeField]
+    private float intensity;
+
+    private readonly List<WheelCollider> frontWheels = new();
+    private readonly List<WheelCollider> backWheels = new();
+
+    private static readonly int EmissionID = Shader.PropertyToID("_EmissionColor");
+
+    private void Start()
+    {
+        frontWheels.AddRange(new[] { frontLeft, frontRight });
+        backWheels.AddRange(new[] { backLeft, backRight });
+    }
+
+    private void UpdateTorque(float torque)
+    {
+        frontWheels.ForEach(wheel => wheel.motorTorque = torque);
+        backWheels.ForEach(wheel => wheel.motorTorque = torque);
+    }
+
+    private void UpdateSteeringAngle(float angle)
+    {
+        frontWheels.ForEach(wheel => wheel.steerAngle = angle);
+    }
+
+    private void UpdateBrakeTorque(float brakingTorque)
+    {
+        frontWheels.ForEach(wheel => wheel.brakeTorque = brakingTorque);
+        float lightsMultiplier = brakingTorque > 0 ? 1 : 0;
+        tailLights.material.SetColor(EmissionID, tailLightsColor * intensity * lightsMultiplier);
+    }
+
+    private void ResetCar()
+    {
+        transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        UpdateTorque(0);
+        UpdateSteeringAngle(0);
+        UpdateBrakeTorque(0);
+    }
+
+    private void UpdateWheelTransform(WheelCollider wheelCollider, Transform wheelTransform)
+    {
+        wheelCollider.GetWorldPose(out Vector3 position, out Quaternion rotation);
+        wheelTransform.SetPositionAndRotation(position, rotation);
+    }
+
+    private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         bool isBraking = Input.GetKey(KeyCode.Space);
 
-        frontLeft.motorTorque = verticalInput * wheelSpeed;
-        frontRight.motorTorque = verticalInput * wheelSpeed;
-        backLeft.motorTorque = verticalInput * wheelSpeed;
-        backRight.motorTorque = verticalInput * wheelSpeed;
+        UpdateTorque(verticalInput * wheelSpeed);
+        UpdateSteeringAngle(steerAngle * horizontalInput);
+        UpdateBrakeTorque(isBraking ? brakingForce : 0);
 
-        frontLeft.steerAngle = steerAngle * horizontalInput;
-        frontRight.steerAngle = steerAngle * horizontalInput;
-
-        if (isBraking)
-        {
-            frontLeft.brakeTorque = brakingForce;
-            frontRight.brakeTorque = brakingForce;
-        }
-        else
-        {
-            frontLeft.brakeTorque = 0;
-            frontRight.brakeTorque = 0;
-        }
+        UpdateWheelTransform(frontLeft, frontLeftTransform);
+        UpdateWheelTransform(frontRight, frontRightTransform);
+        UpdateWheelTransform(backLeft, backLeftTransform);
+        UpdateWheelTransform(backRight, backRightTransform);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
-            frontLeft.motorTorque = verticalInput * wheelSpeed;
-            frontRight.motorTorque = verticalInput * wheelSpeed;
-            backLeft.motorTorque = verticalInput * wheelSpeed;
-            backRight.motorTorque = verticalInput * wheelSpeed;
-
-            frontLeft.steerAngle = steerAngle * horizontalInput;
-            frontRight.steerAngle = steerAngle * horizontalInput;
-
-            frontLeft.brakeTorque = 0;
-            frontRight.brakeTorque = 0;
+            ResetCar();
         }
-
-        frontLeft.GetWorldPose(out Vector3 flPos, out Quaternion flRot);
-        frontLeftTransform.SetPositionAndRotation(flPos, flRot);
-
-        frontRight.GetWorldPose(out Vector3 frPos, out Quaternion frRot);
-        frontRightTransform.SetPositionAndRotation(frPos, frRot);
-
-        backLeft.GetWorldPose(out Vector3 blPos, out Quaternion blRot);
-        backLeftTransform.SetPositionAndRotation(blPos, blRot);
-
-        backRight.GetWorldPose(out Vector3 brPos, out Quaternion brRot);
-        backRightTransform.SetPositionAndRotation(brPos, brRot);
     }
 }

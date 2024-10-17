@@ -353,7 +353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7234331314476794767, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_Name
-      value: Black Super Car 01 Variant
+      value: Player Car
       objectReference: {fileID: 0}
     - target: {fileID: 7234331314476794767, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_IsActive
@@ -397,31 +397,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: -0.000015582424
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -34.68
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071073
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.70710635
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -429,7 +429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8011431689055082805, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -508,12 +508,21 @@ MonoBehaviour:
   frontRightTransform: {fileID: 6621387997730320932}
   backLeftTransform: {fileID: 8820456586881876914}
   backRightTransform: {fileID: 5387201724367980200}
-  wheelSpeed: 400
-  brakingForce: 3000
+  rb: {fileID: 634862051}
+  wheelSpeed: 450
+  brakingForce: 1000
   steerAngle: 30
+  tailLights: {fileID: 3122669497187631015}
+  tailLightsColor: {r: 1, g: 0, b: 0, a: 1}
+  intensity: 10
 --- !u!4 &2984510055575472351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4757589919354044328, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
+  m_PrefabInstance: {fileID: 7740921151026362231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3122669497187631015 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4627648293976606928, guid: f676acb6791fe074e9ef1c0f2a01343a, type: 3}
   m_PrefabInstance: {fileID: 7740921151026362231}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5387201724367980200 stripped
