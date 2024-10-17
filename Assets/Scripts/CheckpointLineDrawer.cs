@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class CheckpointLineDrawer : MonoBehaviour
 {
-    [SerializeField] Gradient brakeGradient;
+    [SerializeField]
+    private Gradient brakeGradient;
 
     private void OnDrawGizmos()
     {

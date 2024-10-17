@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Vector3 offset;
-    public Transform target;
+    [SerializeField]
+    private Vector3 offset;
+    [SerializeField]
+    private Transform target;
 
     private void OnValidate()
     {
@@ -15,7 +17,7 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         transform.position = target.TransformPoint(offset);
         Vector3 lookVector = target.position - transform.position;

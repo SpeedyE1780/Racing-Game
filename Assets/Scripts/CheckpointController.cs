@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
-    [SerializeField] private float brakeFactor;
+    [SerializeField]
+    private float brakeFactor;
+
     public float BrakeFactor => brakeFactor;
     public Vector3 Position => transform.position;
 
