@@ -86,7 +86,7 @@ public class AIController : MonoBehaviour
             currentTime = 0;
         }
 
-        if(currentTime >= timeBetweenCheckpoints)
+        if (currentTime >= timeBetweenCheckpoints)
         {
             Debug.Log("Reset");
             Vector3 lookDirection = checkPoints[currentCheckpoint].position - checkPoints[currentCheckpoint - 1].position;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -9,7 +7,7 @@ public class CameraFollow : MonoBehaviour
 
     private void OnValidate()
     {
-        if(target != null)
+        if (target != null)
         {
             transform.position = target.TransformPoint(offset);
             Vector3 lookVector = target.position - transform.position;
