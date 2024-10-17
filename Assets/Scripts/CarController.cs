@@ -41,6 +41,21 @@ public class CarController : MonoBehaviour
             frontRight.brakeTorque = 0;
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+            frontLeft.motorTorque = verticalInput * wheelSpeed;
+            frontRight.motorTorque = verticalInput * wheelSpeed;
+            backLeft.motorTorque = verticalInput * wheelSpeed;
+            backRight.motorTorque = verticalInput * wheelSpeed;
+
+            frontLeft.steerAngle = steerAngle * horizontalInput;
+            frontRight.steerAngle = steerAngle * horizontalInput;
+
+            frontLeft.brakeTorque = 0;
+            frontRight.brakeTorque = 0;
+        }
+
         frontLeft.GetWorldPose(out Vector3 flPos, out Quaternion flRot);
         frontLeftTransform.SetPositionAndRotation(flPos, flRot);
 
